@@ -121,13 +121,13 @@ describe Rakuten::Client do
   end
 
   it "楽天ブックスCD検索APIの呼び出しが可能であること" do
-    result = @client.books_CD_search('2011-12-01', {:artistName => 'サザンオールスターズ', :sort => '+itemPrice'})
+    result = @client.books_c_d_search('2011-12-01', {:artistName => 'サザンオールスターズ', :sort => '+itemPrice'})
     (result['count'] > 0).should be_true
     result['Items']['Item'].should_not be_empty
   end
 
   it "楽天ブックスDVD検索APIの呼び出しが可能であること" do
-    result = @client.books_DVD_search('2010-03-18', {:title => 'ガンダム', :sort => '+itemPrice'})
+    result = @client.books_d_v_d_search('2011-12-01', {:title => 'ガンダム', :sort => '+itemPrice'})
     (result['count'] > 0).should be_true
     result['Items']['Item'].should_not be_empty
   end
