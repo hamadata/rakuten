@@ -70,12 +70,6 @@ describe Rakuten::Client do
     result['Items']['Item'].should_not be_empty
   end
 
-  it "楽天カタログ検索APIの呼び出しが可能であること" do
-    result = @client.catalog_search('2009-04-15', {:keyword => '液晶テレビ', :sort => '-reviewCount'})
-    (result['count'] > 0).should be_true
-    result['Catalogs']['Catalog'].should_not be_empty
-  end
-
   it "楽天商品ランキングAPIの呼び出しが可能であること" do
     result = @client.item_ranking('2010-08-05')
     result['title'].should_not be_nil
@@ -110,15 +104,6 @@ describe Rakuten::Client do
     result['makerName'].should_not be_nil
   end
 
-  it "楽天プロダクト価格比較情報APIの呼び出しが可能であること" do
-    sample = @client.product_search('2010-11-18', {:keyword => 'ノートパソコン', :genreId => 100040, :hits => 1})
-    product_id = sample['Items']['Item'][0]['productId']
-    # 楽天プロダクトか各比較情報API呼び出し.
-    result = @client.product_price_info('2010-11-18', {:productId => product_id, :availability => 1, :creditCardFlag => 1})
-    (result['count'] > 0).should be_true
-    result['Items']['Item'].should_not be_empty
-  end
-
   #
   # 楽天ブックス系API
   # 
@@ -136,7 +121,7 @@ describe Rakuten::Client do
   end
 
   it "楽天ブックスCD検索APIの呼び出しが可能であること" do
-    result = @client.books_CD_search('2010-03-18', {:artistName => 'サザンオールスターズ', :sort => '+itemPrice'})
+    result = @client.books_CD_search('2011-12-01', {:artistName => 'サザンオールスターズ', :sort => '+itemPrice'})
     (result['count'] > 0).should be_true
     result['Items']['Item'].should_not be_empty
   end
